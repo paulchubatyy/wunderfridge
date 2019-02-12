@@ -15,7 +15,7 @@ gunicorn = "*"
 pyowm = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
 
 [scripts]
 develop = "flask run"
