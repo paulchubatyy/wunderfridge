@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+watchdog = "*"
+"autopep8" = "*"
+
+[packages]
+flask = "*"
+simplejson = "*"
+envparse = "*"
+gunicorn = "*"
+pyowm = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+develop = "flask run"
+gunicorn = "gunicorn -w 2 -b 0.0.0.0:8000 app"

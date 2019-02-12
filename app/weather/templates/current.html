@@ -1,0 +1,6 @@
+<h2>{{ location_name }}</h2>
+
+<p>
+    It's currently {% if clouds > 40 %}clody{% else %}sunny{% endif %} and <strong>{{ temperature.temp|int }}° {{ temp_units|title }}</strong>.
+    High will be {{ temperature.temp_max|int }}°, low {{ temperature.temp_min|int }}°.
+</p>
