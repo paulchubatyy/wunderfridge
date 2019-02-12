@@ -4,7 +4,13 @@ services:
     restart: always
     build: ./wpe
     privileged: true
+    depends_on:
+      - app
   scheduler:
     restart: always
     build: ./scheduler
     privileged: true
+  app:
+    restart: always
+    build: ./app
+    command: pipenv run gunicorn
