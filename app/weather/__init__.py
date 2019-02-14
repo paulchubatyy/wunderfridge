@@ -17,7 +17,7 @@ def current():
     location = obs.get_location()
     temp_units = env.str('OWM_TEMP_UNITS')
     data = dict(
-        location_name=location.get_name(),
+        location_name=f"{location.get_name()}, {location.get_country()}",
         temperature=weather.get_temperature(temp_units),
         clouds = weather.get_clouds(),
         temp_units=temp_units
