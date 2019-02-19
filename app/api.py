@@ -39,6 +39,18 @@ api.jinja_env.filters['datefilter'] = date_format
 api.jinja_env.filters['datetimefilter'] = datetime_format
 
 
+weather_units = env.str('DARKSKY_UNITS', default=None)
+
+
+def temperature_format(temp):
+    units = 'C' if weather_units == 'si' else 'F'
+    return f"{int(temp)}°{units}"
+
+
+api.jinja_env.filters['temperaturefilter'] = temperature_format
+
+
+
 @api.route('/')
 def index(req, resp):
     resp.text = api.template('index.html')
@@ -52,15 +64,13 @@ def healthcheck(req, resp):
 @api.route('/weather')
 def weather(req, resp):
     location = env('DARKSKY_COORDINATES', postprocessor=lambda x: x.split(';'))
-    units = env.str('DARKSKY_UNITS', default=None)
-    celsius = True if units == 'si' else False
     lang = env.str('DARKSKY_LANG', default=None)
     city = env.str('WEATHER_LOCATION', default='San Jose')
     data = {}
-    w = forecast(env.str('DARKSKY_KEY'), *location,
-                  units=units, lang=lang)
+    w = forecast(
+        env.str('DARKSKY_KEY'), *location, units=weather_units, lang=lang)
     resp.text = api.template(
-        'weather.html', weather=w, city=city, celsius=celsius)
+        'weather.html', weather=w, city=city)
 
 
 if __name__ == '__main__':
