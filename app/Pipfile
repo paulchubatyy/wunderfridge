@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+yapf = "*"
+
+[packages]
+responder = "*"
+darkskylib = "*"
+envparse = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+server = "python3 api.py"

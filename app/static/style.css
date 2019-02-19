@@ -1,0 +1,43 @@
+.container {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-rows: 10% auto;
+}
+
+#title {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 1;
+    text-align: center;
+    color: blueviolet;
+}
+
+#clock {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 1;
+    text-align: center;
+}
+
+#weather {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-end: 4;
+    grid-row-start: 1;
+}
+
+#wunderlist {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#calendar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.container > section {
+    border: 1px #000000;
+}

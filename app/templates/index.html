@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <title>Wunderfridge</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/2.3.9/cash.min.js" integrity="sha256-sgbRFu1ovLpx5RKm2jtylr21wiM8e6HkFI2JD3gZYYc=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <section id="title">
+        <h1>WunderFridge</h1>
+    </section>
+
+    <section id="clock">
+        Loading...
+    </section>
+
+    <section id="wunderlist">
+        <h2>Todo</h2>
+        <ul>
+            <li>Use wunderlist api to get the latest todo items from the particular list</li>
+            <li>Figure out configuration options for this widget</li>
+            <li>Register application in Wunderlist Apps</li>
+            <li>Find a better place to live</li>
+        </ul>
+    </section>
+
+    <section id="weather">
+        <h2>It's currently raining and 12°С in San Jose</h2>
+        <img src="/static/raining-cloud.png"/>
+        <h3>Forecast</h2>
+        <h4>Tomorrow it will be raining again. High will be 14°С, low will be 2°C</h4>
+    </section>
+
+    <section id="calendar">
+        <h2>Upcoming Events</h2>
+        <h3>Today</h3>
+        <ol>
+            <li>Come up with CSS for the dashboard</li>
+            <li>Write the project roadmap</li>
+            <li>Think about possible device manufacturing...</li>
+        </ol>
+        <h3>Tomorrow</h3>
+        <ol>
+            <li>Put the bottles on the porch</li>
+            <li>Import the calendar events from Google Calendar</li>
+        </ol>
+        <h3>Later</h3>
+        <ol>
+            <li><span class="duedate">Feb 25</span> Buy eveything for the new baby!</li>
+            <li><span class="duedate">Mar 16, 12pm</span> Meet Grandma in SJC</li>
+            <li><span class="duedate">May 10</span> Move to the new home</li>
+        </ol>
+    </section>
+</div>
+<script type="text/javascript">
+
+function clock(){
+    let d = new Date().toLocaleString('uk-UA');
+    $('#clock').html(`<h1>${d}</h1>`);
+    setTimeout(clock, 500);
+}
+
+function weather(){
+    fetch("/weather")
+        .then(response => response.text())
+        .then(html => $('#weather').html(html));
+    setTimeout(weather, 3600 * 1000);
+}
+$(function(){
+    clock();
+    weather();
+});
+</script>
+</body>
+</html>

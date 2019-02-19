@@ -1,0 +1,16 @@
+<h2>{{ weather.currently.temperature|int }}°{% if celsius %}C{% else %}F{% endif %} {{ city }}</h2>
+<h3>{{ weather.hourly.summary }}</h3>
+
+<p>
+    Humidity {{ (weather.currently.humidity * 100)|int }}%.
+    Pressure {{ weather.currently.pressure }}Pa, wind speed {{ weather.currently.windSpeed }}m/s
+    {% if weather.currently.windGust > 0 %} with gusts {{weather.currently.windGust}}m/s{% endif %}.
+    <strong>Feels like {{ weather.currently.apparentTemperature|int }}°{% if celsius %}C{% else %}F{% endif %}.</strong>
+</p>
+
+<h3>Hourly Forecast</h3>
+{% for forecast in weather.hourly.data %}
+<ol>
+    <li>{{ forecast.time.strftime('%H:%i') }}, {{ forecast.summary }}, {{ forecast.apparentTemperature|int }}°{% if celsius %}C{% else %}F{% endif %}.</li>
+</ol>
+{% endfor %}
