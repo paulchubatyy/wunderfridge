@@ -1,5 +1,7 @@
-FROM arm32v7/python:3.6-slim
-RUN pip install --no-cache-dir pipenv
+FROM balenalib/raspberrypi3-ubuntu-python:3.6-trusty-build
+RUN apt-get update && apt-get install -y python3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir pipenv
 ADD . /app
 WORKDIR /app
 RUN pipenv install --system --deploy --ignore-pipfile
