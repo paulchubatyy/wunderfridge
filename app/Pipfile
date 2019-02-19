@@ -10,6 +10,7 @@ yapf = "*"
 responder = "*"
 darkskylib = "*"
 envparse = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.6"

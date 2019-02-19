@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3ebc14c873fe3be28364de609686f9bb743817565c802b145d393b3f7da84c10"
+            "sha256": "bb20472595e685cc9ae1075b801ca5541c88134bded21e836da12f1d46b2486e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -224,6 +224,14 @@
             ],
             "version": "==0.0.5"
         },
+        "pytz": {
+            "hashes": [
+                "sha256:32b0891edff07e28efe91284ed9c31e123d84bea3fd98e1f72be2508f43ef8d9",
+                "sha256:d5f05e487007e29e03409f9398d074e158d920d36eb82eaf66fb1136b0c5374c"
+            ],
+            "index": "pypi",
+            "version": "==2018.9"
+        },
         "pyyaml": {
             "hashes": [
                 "sha256:3d7da3009c0f3e783b2c873687652d83b1bbfd5c88e9813fb7e5b03c0dd3108b",
@@ -285,9 +293,9 @@
         },
         "starlette": {
             "hashes": [
-                "sha256:abaf46f62be0540b2e851bf14aed088bf1c4b2cb25b87421743a64b71a08a5af"
+                "sha256:15bac6b30f8e8e5257ecbd85702f0b26d8e779e8534bdaa352e5d50a3205c367"
             ],
-            "version": "==0.10.3"
+            "version": "==0.10.5"
         },
         "urllib3": {
             "hashes": [
@@ -298,9 +306,9 @@
         },
         "uvicorn": {
             "hashes": [
-                "sha256:f9c15827ec2b9846425c30c1962e73d80d750eda70ac2dfa3a7340c7c10df9c3"
+                "sha256:f27889a332ee5c55b4841b11b2392d00dac079f39063fabc1e13e18ada3eb7ba"
             ],
-            "version": "==0.4.4"
+            "version": "==0.4.5"
         },
         "uvloop": {
             "hashes": [
