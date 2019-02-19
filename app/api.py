@@ -1,3 +1,5 @@
+import sys
+import logging
 import responder
 from envparse import env
 from darksky import forecast
@@ -7,15 +9,41 @@ import pytz
 
 env.read_envfile()
 
+DEBUG=env.bool('DEBUG', default=False),
+
+logger = logging.getLogger('__name__')
+formatter = logging.Formatter('%(levelname)s: %(message)s')
+if DEBUG:
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.INFO)
+h1 = logging.StreamHandler(sys.stdout)
+h1.setFormatter(formatter)
+if DEBUG:
+    h1.setLevel(logging.DEBUG)
+else:
+    h1.setLevel(logging.INFO)
+h1.addFilter(lambda record: record.levelno <= logging.INFO)
+h2 = logging.StreamHandler()
+h2.setFormatter(formatter)
+h2.setLevel(logging.WARNING)
+logger.addHandler(h1)
+logger.addHandler(h2)
+
 api = responder.API(
-    debug=env.bool('DEBUG', default=False),
+    debug=DEBUG,
     secret_key=env.str('SECRET_KEY')
 )
+
+if DEBUG:
+    logger.debug("Runinng in debug mode")
 
 local_tz = pytz.timezone(env.str('TIME_ZONE', default='America/Los_Angeles'))
 timeformat = env.str('TIME_FORMAT', default='%H:%M')
 dateformat = env.str('DATE_FORMAT', default='%a, %b %-d')
 datetimeformat = f"{dateformat} {timeformat}"
+
+logger.info(f"local time in {local_tz}: {dt.datetime.now(tz=local_tz)}")
 
 def to_local_datetime(timestamp, tz):
     timezone = pytz.timezone(tz)
@@ -49,6 +77,7 @@ def temperature_format(temp):
 
 api.jinja_env.filters['temperaturefilter'] = temperature_format
 
+logger.info("Added jinja filters")
 
 
 @api.route('/')

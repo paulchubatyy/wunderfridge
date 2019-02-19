@@ -58,7 +58,8 @@
 <script type="text/javascript">
 let now = new Date("{{ now }}");
 function clock() {
-    let d = now.setSeconds(now.getSeconds()+1).toLocaleString('uk-UA');
+    now.setSeconds(now.getSeconds()+1);
+    let d = now.toLocaleString('uk-UA')
     $('#clock').html(`<h1>${d}</h1>`);
     setTimeout(clock, 1000);
 }
