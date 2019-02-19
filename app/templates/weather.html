@@ -8,9 +8,28 @@
     <strong>Feels like {{ weather.currently.apparentTemperature|int }}°{% if celsius %}C{% else %}F{% endif %}.</strong>
 </p>
 
-<h3>Hourly Forecast</h3>
-{% for forecast in weather.hourly.data %}
-<ol>
-    <li>{{ forecast.time.strftime('%H:%i') }}, {{ forecast.summary }}, {{ forecast.apparentTemperature|int }}°{% if celsius %}C{% else %}F{% endif %}.</li>
-</ol>
-{% endfor %}
+<div id="forecast">
+    <section>
+        <h3>Hourly</h3>
+        <ol>
+        {% for forecast in weather.hourly.data[1:9] %}
+            <li>
+            {{ forecast.time|timefilter(weather.timezone) }}, {{ forecast.summary }}, {{ forecast.apparentTemperature|int }}°{% if celsius %}C{% else %}F{% endif %}
+            </li>
+        {% endfor %}
+        </ol>
+    </section>
+    <section>
+        <h3>Weekly</h3>
+        <ol>
+        {% for forecast in weather.daily.data %}
+            <li>
+                {{ forecast.time|datefilter(weather.timezone) }}, {{ forecast.summary }}
+                High will be {{ forecast.apparentTemperatureHigh|int }}°{% if celsius %}C{% else %}F{% endif %}
+                and
+                low will be {{ forecast.apparentTemperatureLow|int }}°{% if celsius %}C{% else %}F{% endif %}
+            </li>
+        {% endfor %}
+        </ol>
+    </section>
+</div>

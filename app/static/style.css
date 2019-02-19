@@ -26,6 +26,17 @@
     grid-row-start: 1;
 }
 
+#forecast {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 20% 80%;
+}
+
+#forecast ol {
+    list-style: none;
+    padding: 0;
+}
+
 #wunderlist {
     grid-column-start: 2;
     grid-column-end: 3;
@@ -38,6 +49,3 @@
     grid-row-end: 4;
 }
 
-.container > section {
-    border: 1px #000000;
-}

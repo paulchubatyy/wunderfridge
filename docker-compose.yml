@@ -1,10 +1,24 @@
-version: '2'
+version: '2.1'
 services:
   wpe:
     restart: always
     build: ./wpe
     privileged: true
+    depends_on:
+      - app
   scheduler:
     restart: always
     build: ./scheduler
     privileged: true
+  app:
+    restart: always
+    build: ./app
+    entrypoint: python3 api.py
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/healthcheck"]
+      interval: 30m
+      retries: 1
+    environment:
+      PORT: 80
+    ports:
+      - "80:80"
