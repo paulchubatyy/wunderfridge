@@ -53,7 +53,8 @@ api.jinja_env.filters['temperaturefilter'] = temperature_format
 
 @api.route('/')
 def index(req, resp):
-    resp.text = api.template('index.html')
+    now = dt.datetime.now(tz=local_tz)
+    resp.text = api.template('index.html', now=now.strftime('%Y-%m-%dT%H:%M:%SZ'))
 
 
 @api.route('/healthcheck')
@@ -71,6 +72,12 @@ def weather(req, resp):
         env.str('DARKSKY_KEY'), *location, units=weather_units, lang=lang)
     resp.text = api.template(
         'weather.html', weather=w, city=city)
+
+
+@api.route('/wunderlist')
+def wunderlist(req, resp):
+    todos = []
+    resp.text = api.template('wunderlist.html', todos=todos)
 
 
 if __name__ == '__main__':
