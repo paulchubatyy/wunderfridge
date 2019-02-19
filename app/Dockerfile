@@ -1,4 +1,4 @@
-FROM arm32v7/python:3.7-slim
+FROM arm32v7/python:3.6-slim
 RUN pip install --no-cache-dir pipenv
 ADD . /app
 WORKDIR /app
