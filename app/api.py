@@ -108,6 +108,10 @@ def wunderlist(req, resp):
     todos = []
     resp.text = api.template('wunderlist.html', todos=todos)
 
+@api.route('/calendar')
+def calendar(req, resp):
+    pass
+
 
 if __name__ == '__main__':
     api.run()
