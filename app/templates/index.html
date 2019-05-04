@@ -56,23 +56,34 @@
     </section>
 </div>
 <script type="text/javascript">
+const secondly = 1000
+const hourly = 3600 * secondly
+
 let now = new Date("{{ now }}");
 function clock() {
     now.setSeconds(now.getSeconds()+1);
     let d = now.toLocaleString('uk-UA')
     $('#clock').html(`<h1>${d}</h1>`);
-    setTimeout(clock, 1000);
+    setTimeout(clock, secondly);
 }
 
 function weather(){
     fetch("/weather")
-        .then(response => response.text())
-        .then(html => $('#weather').html(html));
-    setTimeout(weather, 3600 * 1000);
+      .then(response => response.text())
+      .then(html => $('#weather').html(html));
+    setTimeout(weather, hourly);
+}
+
+function calendar(){
+  fetch('/calendar')
+    .then(response => response.text())
+    .then(html => $('#calendar').html(html));
+  setTimeout(calendar, hourly)
 }
 $(function(){
     clock();
     weather();
+    calendar();
 });
 </script>
 </body>

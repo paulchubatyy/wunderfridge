@@ -1,0 +1,11 @@
+<h2>Upcoming</h2>
+<h3>as of {{ now|datetimefilter }}</h3>
+{% if events %}
+<ul>
+  {% for event in events %}
+  <li>{{ event.startTime|datetimefilter }}, {{ event.summary }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Hooray, not much to do!</p>
+{% endif %}
