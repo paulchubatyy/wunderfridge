@@ -15,9 +15,6 @@ google-api-python-client = "*"
 google-auth-oauthlib = "*"
 responder = {git = "https://github.com/kennethreitz/responder"}
 
-[requires]
-python_version = "3.6"
-
 [scripts]
 server = "python3 api.py"
 
