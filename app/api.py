@@ -18,10 +18,10 @@ DEBUG=env.bool('DEBUG', default=False),
 
 logger = logging.getLogger('__name__')
 formatter = logging.Formatter('%(levelname)s: %(message)s')
-if DEBUG:
-    logger.setLevel(logging.DEBUG)
-else:
-    logger.setLevel(logging.INFO)
+# if DEBUG:
+#     logger.setLevel(logging.DEBUG)
+# else:
+#     logger.setLevel(logging.INFO)
 h1 = logging.StreamHandler(sys.stdout)
 h1.setFormatter(formatter)
 if DEBUG:
